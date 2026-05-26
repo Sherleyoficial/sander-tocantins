@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>CardioRun™ · Sander · Tocantins Corrida</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --teal:#007C78;--teal2:#0A8F86;--tealDark:#075E56;--tealSoft:#E5F5F2;
+  --mag:#C0265C;--magSoft:#FBE8F0;
+  --green:#11845B;--greenSoft:#EAF8F0;
+  --amber:#B7791F;--amberSoft:#FFF5DA;
+  --ink:#20242A;--muted:#697280;--soft:#98A2B3;
+  --line:#E6E4DF;--line2:#EEF0EA;--card:#FFFFFF;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:"Manrope",system-ui,sans-serif;
+  color:var(--ink);
+  background:
+    radial-gradient(circle at 8% 12%,rgba(0,124,120,.10),transparent 30%),
+    radial-gradient(circle at 90% 6%,rgba(192,38,92,.09),transparent 28%),
+    radial-gradient(circle at 50% 90%,rgba(0,124,120,.05),transparent 40%),
+    linear-gradient(160deg,#ffffff 0%,#F4F9F7 40%,#F8F7F4 100%);
+  min-height:100vh;
+  -webkit-font-smoothing:antialiased;
+}
+
+/* BG DECORATION */
+.bg-deco{position:fixed;inset:0;pointer-events:none;z-index:0;overflow:hidden}
+.bg-deco:before{content:"";position:absolute;top:-40px;left:-100px;width:300px;height:300px;border:1.5px solid rgba(0,124,120,.14);border-radius:50%}
+.bg-deco:after{content:"";position:absolute;bottom:-80px;right:-120px;width:380px;height:380px;border:1.5px solid rgba(192,38,92,.10);border-radius:50%}
+
+.page{max-width:680px;margin:0 auto;padding:36px 22px 60px;position:relative;z-index:1}
+
+/* ── HEADER ── */
+.header{text-align:center;margin-bottom:40px}
+
+.brand-line{display:flex;align-items:center;justify-content:center;gap:10px;margin-bottom:20px}
+.brand-name{font-size:13px;font-weight:800;letter-spacing:6px;color:var(--tealDark);text-transform:uppercase}
+.brand-dot{width:5px;height:5px;border-radius:50%;background:linear-gradient(135deg,var(--teal),var(--mag))}
+
+.tagline{font-size:11px;font-weight:800;letter-spacing:4px;color:var(--mag);text-transform:uppercase;margin-bottom:28px}
+
+.hero-phrase{font-size:clamp(28px,6vw,42px);font-weight:800;letter-spacing:-1.5px;line-height:1.1;color:var(--ink);margin-bottom:6px}
+.hero-phrase .accent{color:var(--teal)}
+.hero-phrase .accent2{color:var(--mag)}
+
+.hero-line{height:2px;width:60px;background:linear-gradient(90deg,var(--teal),var(--mag));margin:18px auto 24px;border-radius:2px}
+
+.athlete-pill{display:inline-flex;align-items:center;gap:10px;background:#fff;border:1px solid var(--line);border-radius:999px;padding:10px 18px;box-shadow:0 4px 16px rgba(16,24,40,.06)}
+.athlete-avatar{width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,var(--teal),var(--teal2));display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:800;color:#fff;flex-shrink:0}
+.athlete-name{font-size:15px;font-weight:800;color:var(--ink)}
+.athlete-meta{font-size:11px;color:var(--muted);font-weight:600}
+
+.event-row{display:flex;align-items:center;justify-content:center;gap:8px;margin-top:14px}
+.event-tag{font-size:11px;font-weight:800;letter-spacing:1px;color:var(--tealDark);background:var(--tealSoft);border:1px solid rgba(0,124,120,.18);border-radius:999px;padding:5px 12px;text-transform:uppercase}
+.event-date{font-size:11px;font-weight:700;color:var(--soft)}
+
+/* ── CLASSIFICATION BANNER ── */
+.classif{background:linear-gradient(135deg,var(--tealDark) 0%,var(--teal2) 100%);border-radius:20px;padding:24px 28px;margin-bottom:20px;display:flex;align-items:center;justify-content:space-between;gap:16px;box-shadow:0 12px 40px rgba(0,124,120,.18);position:relative;overflow:hidden}
+.classif:after{content:"";position:absolute;top:-30px;right:-30px;width:120px;height:120px;border:1.5px solid rgba(255,255,255,.12);border-radius:50%}
+.classif:before{content:"";position:absolute;bottom:-20px;left:60px;width:80px;height:80px;border:1px solid rgba(255,255,255,.08);border-radius:50%}
+.classif-left{position:relative;z-index:1}
+.classif-label{font-size:10px;font-weight:800;letter-spacing:2px;color:rgba(255,255,255,.65);text-transform:uppercase;margin-bottom:6px}
+.classif-title{font-size:26px;font-weight:800;color:#fff;letter-spacing:-.5px;line-height:1}
+.classif-sub{font-size:12px;color:rgba(255,255,255,.75);font-weight:600;margin-top:4px}
+.classif-badge{background:rgba(255,255,255,.15);border:1.5px solid rgba(255,255,255,.25);border-radius:14px;padding:14px 18px;text-align:center;position:relative;z-index:1;flex-shrink:0}
+.classif-badge-val{font-size:32px;font-weight:800;color:#fff;line-height:1}
+.classif-badge-label{font-size:10px;color:rgba(255,255,255,.7);font-weight:700;margin-top:3px;letter-spacing:.5px}
+
+/* ── BIG METRICS ── */
+.metrics-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:20px}
+.metric-card{background:#fff;border:1px solid var(--line);border-radius:18px;padding:20px 18px;box-shadow:0 4px 16px rgba(16,24,40,.05);position:relative;overflow:hidden}
+.metric-card:after{content:"";position:absolute;top:0;left:0;width:3px;height:100%;background:var(--teal);border-radius:3px 0 0 3px}
+.metric-card.mag-accent:after{background:var(--mag)}
+.metric-card.green-accent:after{background:var(--green)}
+.metric-card.amber-accent:after{background:var(--amber)}
+.metric-label{font-size:10px;font-weight:800;letter-spacing:1.5px;color:var(--soft);text-transform:uppercase;margin-bottom:8px}
+.metric-val{font-size:36px;font-weight:800;letter-spacing:-1.5px;color:var(--teal);line-height:1}
+.metric-val.mag{color:var(--mag)}
+.metric-val.green{color:var(--green)}
+.metric-val.amber{color:var(--amber)}
+.metric-unit{font-size:12px;font-weight:700;color:var(--soft);margin-top:2px}
+.metric-note{font-size:11px;font-weight:600;color:var(--muted);margin-top:6px;line-height:1.4}
+
+/* FC FULL WIDTH */
+.metric-full{background:#fff;border:1px solid var(--line);border-radius:18px;padding:20px 22px;margin-bottom:12px;box-shadow:0 4px 16px rgba(16,24,40,.05);display:flex;align-items:center;justify-content:space-between;gap:16px}
+.metric-full-left .metric-label{font-size:10px;font-weight:800;letter-spacing:1.5px;color:var(--soft);text-transform:uppercase;margin-bottom:6px}
+.metric-full-val{font-size:42px;font-weight:800;letter-spacing:-2px;color:var(--mag);line-height:1}
+.metric-full-unit{font-size:12px;font-weight:700;color:var(--soft);margin-top:2px}
+.metric-full-right{text-align:right}
+.metric-full-tag{display:inline-block;background:var(--magSoft);color:var(--mag);border:1px solid rgba(192,38,92,.18);border-radius:999px;padding:5px 12px;font-size:11px;font-weight:800}
+.metric-full-note{font-size:11px;color:var(--muted);font-weight:600;margin-top:6px}
+
+/* ── ZONE BAR ── */
+.zones-card{background:#fff;border:1px solid var(--line);border-radius:18px;padding:20px 22px;margin-bottom:20px;box-shadow:0 4px 16px rgba(16,24,40,.05)}
+.zones-title{font-size:10px;font-weight:800;letter-spacing:1.5px;color:var(--soft);text-transform:uppercase;margin-bottom:14px}
+.zone-row{display:grid;grid-template-columns:80px 1fr 44px;align-items:center;gap:10px;margin-bottom:8px}
+.zone-row:last-child{margin-bottom:0}
+.zone-name{font-size:11px;font-weight:800;color:var(--ink)}
+.zone-bar-bg{background:var(--line2);border-radius:4px;height:9px;overflow:hidden}
+.zone-fill{height:100%;border-radius:4px}
+.zf5{background:linear-gradient(90deg,var(--mag),#e05)}
+.zf3{background:var(--teal)}
+.zone-pct{font-size:12px;font-weight:800;text-align:right}
+.pct5{color:var(--mag)}.pct3{color:var(--teal)}.pct-soft{color:var(--soft)}
+
+/* ── HIGHLIGHTS ── */
+.highlights{display:flex;flex-direction:column;gap:10px;margin-bottom:20px}
+.highlight-item{background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px 18px;display:flex;align-items:flex-start;gap:12px;box-shadow:0 2px 10px rgba(16,24,40,.04)}
+.hi-icon{width:36px;height:36px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0}
+.hi-green{background:var(--greenSoft)}
+.hi-teal{background:var(--tealSoft)}
+.hi-mag{background:var(--magSoft)}
+.hi-amber{background:var(--amberSoft)}
+.hi-title{font-size:13px;font-weight:800;color:var(--ink);margin-bottom:3px}
+.hi-text{font-size:12px;color:var(--muted);line-height:1.5}
+
+/* ── PROJECTION ── */
+.projection{background:linear-gradient(135deg,#FBE8F0 0%,#fff 60%,#E5F5F2 100%);border:1px solid var(--line);border-radius:18px;padding:22px;margin-bottom:20px}
+.proj-label{font-size:10px;font-weight:800;letter-spacing:1.5px;color:var(--soft);text-transform:uppercase;margin-bottom:14px}
+.proj-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px}
+.proj-item{text-align:center;background:rgba(255,255,255,.7);border:1px solid var(--line2);border-radius:12px;padding:14px 10px}
+.proj-dist{font-size:11px;font-weight:800;color:var(--soft);margin-bottom:4px}
+.proj-val{font-size:20px;font-weight:800;letter-spacing:-1px;color:var(--tealDark)}
+.proj-note{font-size:10px;font-weight:700;color:var(--mag);margin-top:3px}
+
+/* ── PRINT BUTTON ── */
+.print-area{text-align:center;margin-bottom:28px}
+.btn-print{display:inline-flex;align-items:center;gap:8px;background:linear-gradient(135deg,var(--teal),var(--teal2));color:#fff;border:none;border-radius:999px;padding:14px 28px;font-size:13px;font-weight:800;font-family:"Manrope",sans-serif;cursor:pointer;box-shadow:0 8px 24px rgba(0,124,120,.22);transition:all .2s;letter-spacing:.3px}
+.btn-print:hover{transform:translateY(-1px);box-shadow:0 12px 30px rgba(0,124,120,.28)}
+.btn-print svg{width:16px;height:16px;stroke:currentColor;fill:none;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
+
+/* ── FOOTER ── */
+.footer{border-top:1px solid var(--line);padding-top:20px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px}
+.footer-brand{font-size:12px;font-weight:800;color:var(--tealDark)}
+.footer-brand span{display:block;font-size:11px;font-weight:600;color:var(--soft);margin-top:1px}
+.footer-right{font-size:11px;color:var(--soft);font-weight:600;text-align:right}
+
+/* ── PRINT STYLES ── */
+@media print{
+  body{background:white!important;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .bg-deco,.btn-print,.print-area{display:none!important}
+  .page{padding:20px 16px;max-width:100%}
+  .classif{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .metric-card,.metric-full,.zones-card,.highlight-item,.projection{box-shadow:none!important;border:1px solid #e0e0e0!important}
+  .header{margin-bottom:24px}
+  .metrics-grid{gap:8px}
+  @page{margin:1.5cm;size:A4 portrait}
+}
+
+@media(max-width:480px){
+  .metrics-grid{grid-template-columns:1fr 1fr}
+  .proj-grid{grid-template-columns:1fr 1fr 1fr}
+  .classif{flex-direction:column;text-align:center}
+  .metric-val{font-size:30px}
+  .hero-phrase{font-size:26px}
+  .footer{flex-direction:column;align-items:flex-start}
+  .footer-right{text-align:left}
+}
+
+/* FADE IN ANIMATION */
+@keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+.header{animation:fadeUp .5s ease both}
+.classif{animation:fadeUp .5s .1s ease both}
+.metrics-grid{animation:fadeUp .5s .2s ease both}
+.metric-full{animation:fadeUp .5s .25s ease both}
+.zones-card{animation:fadeUp .5s .3s ease both}
+.highlights{animation:fadeUp .5s .35s ease both}
+.projection{animation:fadeUp .5s .4s ease both}
+</style>
+</head>
+<body>
+<div class="bg-deco"></div>
+<main class="page">
+
+<!-- HEADER -->
+<header class="header">
+  <div class="brand-line">
+    <div class="brand-dot"></div>
+    <div class="brand-name">CardioRun™</div>
+    <div class="brand-dot"></div>
+  </div>
+  <div class="tagline">Análise Fisiológica · Performance em Corrida</div>
+
+  <div class="hero-phrase">
+    Prova <span class="accent">analisada.</span><br>
+    Performance <span class="accent2">confirmada.</span>
+  </div>
+  <div class="hero-line"></div>
+
+  <div class="athlete-pill">
+    <div class="athlete-avatar">S</div>
+    <div>
+      <div class="athlete-name">Sander Soares</div>
+      <div class="athlete-meta">Corredor · Ubá, MG</div>
+    </div>
+  </div>
+
+  <div class="event-row">
+    <div class="event-tag">🏁 Tocantins Corrida</div>
+    <div class="event-date">Sábado · 24 mai 2026 · 18h · 21°C</div>
+  </div>
+</header>
+
+<!-- CLASSIFICAÇÃO -->
+<div class="classif">
+  <div class="classif-left">
+    <div class="classif-label">Nível do Atleta</div>
+    <div class="classif-title">Competitivo</div>
+    <div class="classif-sub">Recreacional Avançado</div>
+  </div>
+  <div class="classif-badge">
+    <div class="classif-badge-val">Top 15%</div>
+    <div class="classif-badge-label">entre corredores<br>adultos ativos</div>
+  </div>
+</div>
+
+<!-- MÉTRICAS PRINCIPAIS -->
+<div class="metrics-grid">
+  <div class="metric-card">
+    <div class="metric-label">Tempo de Prova</div>
+    <div class="metric-val mag">19:24</div>
+    <div class="metric-unit">min:seg</div>
+    <div class="metric-note">4,88 km · prova oficial</div>
+  </div>
+  <div class="metric-card mag-accent">
+    <div class="metric-label">Ritmo Médio</div>
+    <div class="metric-val mag">3:59</div>
+    <div class="metric-unit">/km</div>
+    <div class="metric-note">15,1 km/h de velocidade média</div>
+  </div>
+  <div class="metric-card green-accent">
+    <div class="metric-label">Cadência</div>
+    <div class="metric-val green">178</div>
+    <div class="metric-unit">passos/min</div>
+    <div class="metric-note">Padrão de corredor avançado</div>
+  </div>
+  <div class="metric-card amber-accent">
+    <div class="metric-label">Altimetria</div>
+    <div class="metric-val amber">+40</div>
+    <div class="metric-unit">metros acumulados</div>
+    <div class="metric-note">Ritmo sólido mesmo em subida</div>
+  </div>
+</div>
+
+<!-- FC MÁXIMA -->
+<div class="metric-full">
+  <div class="metric-full-left">
+    <div class="metric-label">Frequência Cardíaca Máxima</div>
+    <div class="metric-full-val">197</div>
+    <div class="metric-full-unit">bpm · sprint final</div>
+  </div>
+  <div class="metric-full-right">
+    <div class="metric-full-tag">FC média: 169 bpm</div>
+    <div class="metric-full-note">Reserva competitiva<br>confirmada em prova</div>
+  </div>
+</div>
+
+<!-- ZONAS DE FC -->
+<div class="zones-card">
+  <div class="zones-title">Tempo em Zonas de Frequência Cardíaca</div>
+  <div class="zone-row">
+    <div class="zone-name">Z5 · Máximo</div>
+    <div class="zone-bar-bg"><div class="zone-fill zf5" style="width:61%"></div></div>
+    <div class="zone-pct pct5">61%</div>
+  </div>
+  <div class="zone-row">
+    <div class="zone-name">Z4 · Limite</div>
+    <div class="zone-bar-bg"><div class="zone-fill" style="width:1%;background:var(--amber)"></div></div>
+    <div class="zone-pct pct-soft">1%</div>
+  </div>
+  <div class="zone-row">
+    <div class="zone-name">Z3 · Aeróbico</div>
+    <div class="zone-bar-bg"><div class="zone-fill zf3" style="width:34%"></div></div>
+    <div class="zone-pct pct3">34%</div>
+  </div>
+  <div style="margin-top:10px;font-size:11px;color:var(--muted);font-weight:600;line-height:1.5">
+    61% da prova em zona máxima é o padrão esperado para provas de alta intensidade de curta duração. Indica <strong style="color:var(--ink)">excelente tolerância ao esforço.</strong>
+  </div>
+</div>
+
+<!-- DESTAQUES -->
+<div class="highlights">
+  <div class="highlight-item">
+    <div class="hi-icon hi-green">✓</div>
+    <div>
+      <div class="hi-title">Ritmo consistente do início ao fim</div>
+      <div class="hi-text">Manteve 3:59/km com altimetria positiva e 21°C — sinal de excelente controle de esforço e resistência específica de prova.</div>
+    </div>
+  </div>
+  <div class="highlight-item">
+    <div class="hi-icon hi-teal">⚡</div>
+    <div>
+      <div class="hi-title">Cadência de elite em formação</div>
+      <div class="hi-text">178 passos/min está no limite superior dos corredores avançados. Reduz impacto articular e aumenta a economia de corrida — padrão próximo ao de corredores de elite (180 ppm).</div>
+    </div>
+  </div>
+  <div class="highlight-item">
+    <div class="hi-icon hi-mag">🔥</div>
+    <div>
+      <div class="hi-title">Sprint final com 197 bpm</div>
+      <div class="hi-text">Pico de FC nos metros finais confirma reserva competitiva real — o atleta teve energia para acelerar mesmo sob fadiga elevada. Isso é capacidade, não sorte.</div>
+    </div>
+  </div>
+</div>
+
+<!-- PROJEÇÃO -->
+<div class="projection">
+  <div class="proj-label">🎯 Projeção de Performance · Com base nesta prova</div>
+  <div class="proj-grid">
+    <div class="proj-item">
+      <div class="proj-dist">5 km</div>
+      <div class="proj-val">Sub-20</div>
+      <div class="proj-note">potencial atual</div>
+    </div>
+    <div class="proj-item">
+      <div class="proj-dist">10 km</div>
+      <div class="proj-val">~42min</div>
+      <div class="proj-note">estimativa</div>
+    </div>
+    <div class="proj-item">
+      <div class="proj-dist">VO₂máx</div>
+      <div class="proj-val">57–59</div>
+      <div class="proj-note">ml/kg/min · Excelente</div>
+    </div>
+  </div>
+</div>
+
+<!-- BOTÃO IMPRIMIR -->
+<div class="print-area">
+  <button class="btn-print" onclick="window.print()">
+    <svg viewBox="0 0 24 24"><path d="M6 9V2h12v7"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+    Salvar como PDF
+  </button>
+</div>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-brand">
+    CardioRun™
+    <span>Análise Fisiológica · Performance em Corrida</span>
+  </div>
+  <div class="footer-right">
+    Sherley Ferreira · Ed. Física · MSc Nutrição<br>
+    Ubá · MG · Maio 2026
+  </div>
+</footer>
+
+</main>
+</body>
+</html>
